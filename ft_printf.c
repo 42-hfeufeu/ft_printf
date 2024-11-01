@@ -49,13 +49,18 @@ int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	int		i;
-	int		len;
+	int		size;
 
+	size = 0;
+	i = 0;
 	va_start(args, str);
 	while (str[i])
 	{
+		if (str[i]  == '%')
+			select(s[i + 1], args);
 
 	}
+	return size
 }
 
 int	main(void)
