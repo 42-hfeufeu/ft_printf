@@ -6,12 +6,16 @@
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 17:43:56 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/10/31 14:31:38 by hfeufeu          ###   ########.fr       */
+/*   Updated: 2024/11/02 17:58:16 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <unistd.h>
-#include <stdarg.h>
+#include "ft_printf.h"
+
+int	printperc(void)
+{
+	write(1, "%", 1);
+	return (1);
+}
 
 int	ft_putchar(char c)
 {
@@ -21,28 +25,28 @@ int	ft_putchar(char c)
 
 int	select(char c, va_list args)
 {
-	int	i;
+	int	li;
 
-	i = 0;
+	li = 0;
 	if (c == 'c')
-		i += ft_putchar(va_arg(args, int));
+		li = ft_putchar(va_arg(args, int));
 	else if (c == 's')
-		i += ft_putstr(va_arg(args, char *));
-	else if (c == 'p')
-		i = 0;
+		li = ft_putstr(va_arg(args, char *));
+	//else if (c == 'p')
+	//	li = ft_pointprint();
 	else if (c == 'd')
-		i = 0;
+		li = ft_putnbr(va_arg(args, int));
 	else if (c == 'i')
-		i = 0;
+		li = ft_putnbr(va_arg(args, int));
 	else if (c == 'u')
-		i = 0;
+		li = ft_uputnbr(va_arg(args, unsigned int));
 	else if (c == 'x')
-		i = 0;
+		li = ft_puthexa(va_arg(args, unsigned int));
 	else if (c == 'X')
-		i = 0;
+		li = ft_puthexa(va_arg(args, unsigned int));
 	else if (c == '%')
-		i = 0;
-	return (i);
+		li = printperc();
+	return (li);
 }
 
 int	ft_printf(const char *str, ...)
@@ -57,16 +61,29 @@ int	ft_printf(const char *str, ...)
 	while (str[i])
 	{
 		if (str[i]  == '%')
-			select(s[i + 1], args);
-
+		{
+			size = select(str[i + 1], args);
+			i += size;
+		}
+		write(1, &str[i], 1);
+		i++;
+		size++;
 	}
-	return size
+	va_end(args);
+	return (size);
 }
 
 int	main(void)
 {
-	char s = 's';
+	int	i;
+	int	j;
+	//int s = 9;
 
-	printf("%c \n", s);
-	ft_printf("%c", s);
+	i = 0;
+	j = 0;
+	i = printf("%i, %d:  ", 56, 123);
+	printf("%d \n", i);
+
+	j = ft_printf("%i, %d:  ", 56, 123);
+	printf("%d \n", j);
 }

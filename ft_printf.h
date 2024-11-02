@@ -1,43 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 14:04:50 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:28:40 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/11/02 17:13:53 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/11/02 17:26:08 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdarg.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <stdio.h>
+# include <unistd.h>
+# include <stdarg.h>
 
-void	miniputstr(char *s)
-{
-	int	i;
+int	printperc(void);
+int	ft_putchar(char c);
+int	select(char c, va_list args);
+int	ft_printf(const char *str, ...);
+int	ft_puthexa(unsigned int nb);
+int	ft_putnbr(int nb);
+int	ft_uputnbr(unsigned int nb);
+int	ft_putstr(char *s);
 
-	i = 0;
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-}
 
-int	ft_putstr(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-	{
-		miniputstr("(null)");
-		return (6);
-	}
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	return (i);
-}
+#endif

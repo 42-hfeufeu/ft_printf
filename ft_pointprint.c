@@ -1,43 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_pointprint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 14:04:50 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:28:40 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/11/02 16:28:28 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/11/02 17:30:19 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdarg.h>
+#include "ft_printf.h"
 
-void	miniputstr(char *s)
+/*int	ft_pointprint(void *nb)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-}
-
-int	ft_putstr(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-	{
-		miniputstr("(null)");
-		return (6);
-	}
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	return (i);
-}
+	ft_putchar((nb / 16) + '0');
+	return (8);
+}*/

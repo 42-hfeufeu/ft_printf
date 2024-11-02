@@ -1,43 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 14:04:50 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:28:40 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/11/02 16:09:08 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/11/02 17:50:12 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdarg.h>
+#include "ft_printf.h"
 
-void	miniputstr(char *s)
+int	ft_putnbr(int nb)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	if (nb == -2147483648)
 	{
-		write(1, &s[i], 1);
+		write(1, "-", 1);
+		write(1, "2", 1);
+		nb = 147483648;
+		i += 2;
+	}
+	if (nb < 0)
+	{
+		nb = -nb;
+		write(1, "-", 1);
 		i++;
 	}
-}
-
-int	ft_putstr(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
+	if (nb > 9)
 	{
-		miniputstr("(null)");
-		return (6);
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
 	}
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
+	else
+		i += ft_putchar(nb + '0');
 	return (i);
 }
