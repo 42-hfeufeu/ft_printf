@@ -53,6 +53,8 @@ int	ft_printf(const char *str, ...)
 
 	size = 0;
 	i = 0;
+	if (str[i] == '%' && str[i + 1] == '\0')
+		return (-1);
 	va_start(args, str);
 	if (!str)
 		return (0);
