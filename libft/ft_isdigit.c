@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/07/15 10:42:12 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/10 08:47:31 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+int	ft_isdigit(int c)
 {
-	int	i;
-
-	i = 0;
-	if (nb > 9)
-	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
-	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	if (c >= 48 && c <= 57)
+		return (2048);
+	return (0);
 }

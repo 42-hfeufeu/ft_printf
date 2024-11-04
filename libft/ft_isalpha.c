@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/07 11:05:53 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/10 08:47:00 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+int	ft_isalpha(int c)
 {
-	int	i;
-
-	i = 0;
-	if (nb > 9)
-	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
-	}
+	if (c >= 'a' && c <= 'z')
+		return (1024);
+	else if (c >= 'A' && c <= 'Z')
+		return (1024);
 	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+		return (0);
 }

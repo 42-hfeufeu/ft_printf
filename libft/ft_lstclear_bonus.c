@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/14 00:23:55 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/14 01:32:49 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	int	i;
+	t_list	*sack;
 
-	i = 0;
-	if (nb > 9)
+	if (lst == NULL || del == NULL)
+		return ;
+	while (*lst)
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		sack = (*lst)->next;
+		del((*lst)->content);
+		free(*lst);
+		*lst = sack;
 	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	(*lst) = NULL;
 }

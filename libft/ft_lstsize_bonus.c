@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/13 22:02:35 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/13 22:10:27 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+int	ft_lstsize(t_list *lst)
 {
 	int	i;
 
 	i = 0;
-	if (nb > 9)
+	while (lst != NULL)
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		i++;
+		lst = lst->next;
 	}
-	else
-		i += ft_putcharo(nb + '0');
 	return (i);
 }

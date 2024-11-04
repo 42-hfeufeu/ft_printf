@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/09 12:15:23 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/11 10:08:21 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+char	*ft_strdup(const char *s)
 {
-	int	i;
+	char	*s1;
+	int		i;
 
+	s1 = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (s1 == NULL)
+		return (NULL);
 	i = 0;
-	if (nb > 9)
+	while (s[i] != '\0')
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		s1[i] = s[i];
+		i++;
 	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	s1[i] = '\0';
+	return (s1);
 }

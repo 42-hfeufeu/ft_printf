@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 14:04:50 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:28:40 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/11 16:13:22 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/11 20:02:31 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdarg.h>
 
-void	miniputstr(char *s)
+#include "libft.h"
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
+	char	*def;
+	int		i;
 
-	i = 0;
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-}
-
-int	ft_putstr(char *s)
-{
-	int	i;
-
-	i = 0;
 	if (!s)
-	{
-		miniputstr("(null)");
-		return (6);
-	}
+		return (NULL);
+	def = ft_calloc((ft_strlen(s) + 1), sizeof(char));
+	if (def == NULL)
+		return (NULL);
+	i = 0;
 	while (s[i])
 	{
-		write(1, &s[i], 1);
+		def[i] = f(i, s[i]);
 		i++;
 	}
-	return (i);
+	return (def);
 }

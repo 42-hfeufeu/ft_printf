@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/08 09:34:33 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/10 08:48:30 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+void	*ft_memset(void *s, int c, size_t n)
 {
-	int	i;
+	size_t	i;
+	char	*r;
 
+	r = s;
 	i = 0;
-	if (nb > 9)
+	while (i < n)
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		r[i] = c;
+		i++;
 	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	return (r);
 }

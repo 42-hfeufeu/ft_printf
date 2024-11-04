@@ -11,8 +11,31 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-/*int	ft_pointprint(void *nb)
+int	ft_printhex(unsigned long nb)
 {
-	ft_putchar((nb / 16) + '0');
-	return (8);
-}*/
+	char	*base;
+	int		val;
+
+	base = "0123456789abcdef";
+	val = 0;
+	if (nb >= 16)
+		val += ft_printhex(nb / 16);
+	write(1, &base[nb % 16], 1);
+	return (val + 1);
+}
+
+int	ft_pointprint(void *p)
+{
+	unsigned long	addr;
+	int				val;
+
+	addr = (unsigned long)p;
+	if (addr == 0 || !p)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	write(1, "0x", 2);
+	val = ft_printhex(addr);
+	return (val + 2);
+}

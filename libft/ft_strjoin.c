@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/09 14:29:33 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/11 10:35:15 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	*prod;
 
 	i = 0;
-	if (nb > 9)
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	prod = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (prod == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		prod[j] = s1[i++];
+		j++;
 	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	i = 0;
+	while (s2[i] != '\0')
+	{
+		prod[j] = s2[i++];
+		j++;
+	}
+	prod[j] = '\0';
+	return (prod);
 }

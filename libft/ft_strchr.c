@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/08 12:41:23 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/11 10:54:25 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
 	i = 0;
-	if (nb > 9)
+	if ((unsigned char)c > 127)
+		return ((char *)&s[i]);
+	while (s[i] != '\0')
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		if (s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
+		i++;
 	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	if ((unsigned char)c == '\0')
+		return ((char *)&s[i]);
+	return (NULL);
 }

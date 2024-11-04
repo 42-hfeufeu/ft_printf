@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/13 23:18:26 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/14 00:16:52 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	int	i;
-
-	i = 0;
-	if (nb > 9)
-	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
-	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
 }

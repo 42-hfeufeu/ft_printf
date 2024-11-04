@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/10 09:21:36 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/12 17:33:34 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int	i;
+	char	*csrc;
+	char	*cdest;
 
-	i = 0;
-	if (nb > 9)
+	if (!dest && !src)
+		return (NULL);
+	cdest = (char *)dest;
+	csrc = (char *)src;
+	if (dest <= src)
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		while (n--)
+			*cdest++ = *csrc++;
 	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	else if (dest > src)
+	{
+		cdest += n - 1;
+		csrc += n - 1;
+		while (n--)
+			*cdest-- = *csrc--;
+	}
+	return (dest);
 }

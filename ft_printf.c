@@ -17,36 +17,32 @@ int	printperc(void)
 	return (1);
 }
 
-int	ft_putchar(char c)
+int	ft_putcharo(char c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-int	select(char c, va_list args)
+int	ft_select(char c, va_list args)
 {
-	int	li;
+	int	i;
 
-	li = 0;
+	i = 0;
 	if (c == 'c')
-		li = ft_putchar(va_arg(args, int));
+		i += ft_putcharo(va_arg(args, int));
 	else if (c == 's')
-		li = ft_putstr(va_arg(args, char *));
-	//else if (c == 'p')
-	//	li = ft_pointprint();
-	else if (c == 'd')
-		li = ft_putnbr(va_arg(args, int));
-	else if (c == 'i')
-		li = ft_putnbr(va_arg(args, int));
+		i += ft_ministr(va_arg(args, char *));
+	else if (c == 'p')
+		i += ft_pointprint(va_arg(args, void *));
+	else if (c == 'd' || c == 'i')
+		i += ft_mininbr(va_arg(args, int));
 	else if (c == 'u')
-		li = ft_uputnbr(va_arg(args, unsigned int));
-	else if (c == 'x')
-		li = ft_puthexa(va_arg(args, unsigned int));
-	else if (c == 'X')
-		li = ft_puthexa(va_arg(args, unsigned int));
+		i += ft_uputnbr(va_arg(args, unsigned int));
+	else if (c == 'x' || c == 'X')
+		i += ft_hexa(va_arg(args, unsigned int), c);
 	else if (c == '%')
-		li = printperc();
-	return (li);
+		i += printperc();
+	return (i);
 }
 
 int	ft_printf(const char *str, ...)
@@ -58,32 +54,19 @@ int	ft_printf(const char *str, ...)
 	size = 0;
 	i = 0;
 	va_start(args, str);
+	if (!str)
+		return (0);
 	while (str[i])
 	{
-		if (str[i]  == '%')
+		if (str[i] == '%')
 		{
-			size = select(str[i + 1], args);
-			i += size;
+			size += ft_select(str[i + 1], args);
+			i++;
 		}
-		write(1, &str[i], 1);
+		else
+			size += ft_putcharo(str[i]);
 		i++;
-		size++;
 	}
 	va_end(args);
 	return (size);
-}
-
-int	main(void)
-{
-	int	i;
-	int	j;
-	//int s = 9;
-
-	i = 0;
-	j = 0;
-	i = printf("%i, %d:  ", 56, 123);
-	printf("%d \n", i);
-
-	j = ft_printf("%i, %d:  ", 56, 123);
-	printf("%d \n", j);
 }

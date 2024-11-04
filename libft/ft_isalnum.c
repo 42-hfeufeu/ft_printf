@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:09:08 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:50:12 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/08 07:01:34 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/10 10:10:33 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_putnbr(int nb)
+#include "libft.h"
+
+int	ft_isalnum(int c)
 {
-	int	i;
-
-	i = 0;
-	if (nb == -2147483648)
-	{
-		write(1, "-", 1);
-		write(1, "2", 1);
-		nb = 147483648;
-		i += 2;
-	}
-	if (nb < 0)
-	{
-		nb = -nb;
-		write(1, "-", 1);
-		i++;
-	}
-	if (nb > 9)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
-	else
-		i += ft_putchar(nb + '0');
-	return (i);
+	if (c >= 'a' && c <= 'z')
+		return (8);
+	if (c >= 'A' && c <= 'Z')
+		return (8);
+	if (c >= '0' && c <= '9')
+		return (8);
+	return (0);
 }

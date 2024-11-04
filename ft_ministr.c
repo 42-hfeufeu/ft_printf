@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/31 14:04:50 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/11/02 17:28:40 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+int	ft_ministr(char *s)
 {
 	int	i;
 
 	i = 0;
-	if (nb > 9)
+	if (!s)
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		ft_putstr_fd(("(null)"), 1);
+		return (6);
 	}
-	else
-		i += ft_putcharo(nb + '0');
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
 	return (i);
 }

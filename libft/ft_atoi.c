@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/07/17 16:08:16 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/12 17:35:06 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+int	ft_atoi(const char *nptr)
 {
-	int	i;
+	int	n;
+	int	sign;
 
-	i = 0;
-	if (nb > 9)
+	n = 0;
+	sign = 1;
+	while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
+		++nptr;
+	if (*nptr == '-' || *nptr == '+')
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		if (*nptr == '-')
+			sign *= -1;
+		++nptr;
 	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	while (*nptr >= '0' && *nptr <= '9')
+		n = (n * 10) + (*nptr++ - '0');
+	return (n * sign);
 }

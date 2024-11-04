@@ -11,23 +11,46 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_puthexa(unsigned int nb)
+void	ft_puthexa(unsigned int nb, char c)
+{
+	if (nb >= 16)
+	{
+		ft_puthexa((nb / 16), c);
+		ft_puthexa((nb % 16), c);
+	}
+	else if (nb <= 9)
+		ft_putcharo(nb + '0');
+	else
+	{
+		if (c == 'x')
+			ft_putcharo((nb - 10) + 'a');
+		if (c == 'X')
+			ft_putcharo((nb - 10) + 'A');
+	}
+}
+
+int	lencalc(unsigned int nb)
 {
 	int	i;
-	
+
 	i = 0;
-	if (nb < 0)
+	while (nb != 0)
 	{
-		nb = -nb;
-		write(1, "-", 1);
+		nb /= 16;
 		i++;
 	}
-	if (nb > 9)
-	{
-		ft_puthexa(nb / 16);
-		ft_puthexa(nb % 16);
-	}
+	return (i);
+}
+
+int	ft_hexa(unsigned int nb, char c)
+{
+	int	i;
+
+	i = 0;
+	if (nb == 0)
+		return (write(1, "0", 1));
 	else
-		i += ft_putchar(nb + '0');
+		ft_puthexa(nb, c);
+	i = lencalc(nb);
 	return (i);
 }

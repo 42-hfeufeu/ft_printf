@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/11/02 16:09:08 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/11/02 17:50:12 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+int	ft_mininbr(int nb)
 {
-	int	i;
+	int		len;
+	char	*txt;
 
-	i = 0;
-	if (nb > 9)
+	len = 0;
+	txt = ft_itoa(nb);
+	if (!txt)
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		free(txt);
+		return (0);
 	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	len = ft_strlen(txt);
+	ft_ministr(txt);
+	free(txt);
+	return (len);
 }

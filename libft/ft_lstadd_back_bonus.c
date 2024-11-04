@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/13 22:30:48 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/13 23:16:47 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	i;
+	t_list	*last;
 
-	i = 0;
-	if (nb > 9)
-	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
-	}
+	if (lst == NULL || new == NULL)
+		return ;
+	last = ft_lstlast(*lst);
+	if (last != NULL)
+		last->next = new;
 	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+		*lst = new;
 }

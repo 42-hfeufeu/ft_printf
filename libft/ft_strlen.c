@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/07 11:50:51 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/10 08:50:44 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+size_t	ft_strlen(const char *s)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	if (nb > 9)
-	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
-	}
-	else
-		i += ft_putcharo(nb + '0');
+	while (s[i] != '\0')
+		i++;
 	return (i);
 }

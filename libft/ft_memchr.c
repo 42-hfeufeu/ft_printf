@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/09 06:34:00 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/11 11:18:55 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	i;
+	const unsigned char	*p;
 
-	i = 0;
-	if (nb > 9)
+	p = s;
+	while (n-- > 0)
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		if (*p == (unsigned char)c)
+			return ((void *)p);
+		p++;
 	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	return (NULL);
 }

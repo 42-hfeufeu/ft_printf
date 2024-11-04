@@ -14,15 +14,17 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include "libft/libft.h"
 
-int	printperc(void);
-int	ft_putchar(char c);
-int	select(char c, va_list args);
-int	ft_printf(const char *str, ...);
-int	ft_puthexa(unsigned int nb);
-int	ft_putnbr(int nb);
-int	ft_uputnbr(unsigned int nb);
-int	ft_putstr(char *s);
-
-
+int		printperc(void);
+int		ft_putcharo(char c);
+int		ft_select(char c, va_list args);
+int		ft_printf(const char *str, ...);
+void	ft_puthexa(unsigned int nb, char c);
+int		ft_uputnbr(unsigned int nb);
+int		ft_ministr(char *s);
+int		ft_hexa(unsigned int nb, char c);
+int		lencalc(unsigned int nb);
+int		ft_mininbr(int nb);
+int		ft_pointprint(void *p);
 #endif

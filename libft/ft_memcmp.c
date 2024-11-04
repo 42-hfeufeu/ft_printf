@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uputnbr.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfeufeu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/02 16:14:38 by hfeufeu           #+#    #+#             */
-/*   Updated: 2024/11/02 17:29:39 by hfeufeu          ###   ########.fr       */
+/*   Created: 2024/10/09 06:53:14 by hfeufeu           #+#    #+#             */
+/*   Updated: 2024/10/11 11:29:09 by hfeufeu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_uputnbr(unsigned int nb)
+#include "libft.h"
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
+	long unsigned int	i;
+	const char			*a1;
+	const char			*a2;
 
 	i = 0;
-	if (nb > 9)
+	a1 = s1;
+	a2 = s2;
+	if (n == 0)
+		return (0);
+	while (i < n)
 	{
-		i += ft_uputnbr(nb / 10);
-		i += ft_uputnbr(nb % 10);
+		if (a1[i] != a2[i])
+			return ((unsigned char)a1[i] - (unsigned char)a2[i]);
+		i++;
 	}
-	else
-		i += ft_putcharo(nb + '0');
-	return (i);
+	return (0);
 }
