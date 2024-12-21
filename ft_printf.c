@@ -53,13 +53,13 @@ int	ft_printf(const char *str, ...)
 
 	size = 0;
 	i = 0;
-	if (str[i] == '%' && str[i + 1] == '\0')
+	if (!str)
 		return (-1);
 	va_start(args, str);
-	if (!str)
-		return (0);
 	while (str[i])
 	{
+		if (str[i] == '%' && str[i + 1] == '\0')
+			return (-1);
 		if (str[i] == '%')
 		{
 			size += ft_select(str[i + 1], args);
