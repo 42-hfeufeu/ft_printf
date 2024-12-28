@@ -59,7 +59,7 @@ int	ft_printf(const char *str, ...)
 	while (str[i])
 	{
 		if (str[i] == '%' && str[i + 1] == '\0')
-			size -= (-1);
+			return (-1);
 		if (str[i] == '%')
 		{
 			size += ft_select(str[i + 1], args);
